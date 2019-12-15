@@ -1,21 +1,55 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import styled from '@emotion/styled';
+import SEO from '../components/seo';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Posts</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const StyledList = styled.ul`
+  list-style: none;
+  margin-left: 0;
+`;
 
-export default IndexPage
+const BlogIndex = ({ data }) => {
+  const { edges: posts } = data.allMdx;
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <h1>Posts</h1>
+      <StyledList>
+        {posts.map(({ node: post }) => (
+          <li key={post.id}>
+            <Link to={post.fields.slug}>
+              <h2>{post.frontmatter.title}</h2>
+            </Link>
+            <small>{post.frontmatter.date}</small>
+            <p>{post.excerpt}</p>
+          </li>
+        ))}
+      </StyledList>
+    </Layout>
+  );
+};
+
+export const pageQuery = graphql`
+  query blogIndex {
+    allMdx {
+      edges {
+        node {
+          id
+          excerpt
+          frontmatter {
+            title
+            date(formatString: "MMMM Do, YYYY")
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default BlogIndex;
