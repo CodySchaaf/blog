@@ -67,3 +67,15 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# IDEs and editors
+/.idea
+!.idea/cody-schaaf.iml
+!.idea/codeStyles/
+!.idea/vcs.xml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
