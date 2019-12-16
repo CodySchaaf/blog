@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { mq } from '../utils/theme';
+import svg from '../images/blob-shape.svg';
 
 const box = css`
   border-top: 1px solid #e8e8e8;
@@ -20,12 +21,17 @@ const RightVoid = styled.div`
   ${box};
   grid-column: right-gutter;
   grid-row: footer;
+  position: relative;
 `;
 
 export const FooterContainer = styled.footer`
   ${box};
   grid-column: content;
   grid-row: footer;
+
+  a {
+    text-shadow: none;
+  }
 `;
 
 const StyledUl = styled.ul`
@@ -43,6 +49,16 @@ const StyledUl = styled.ul`
       margin-right: 5px;
     }
   }
+`;
+
+const StyledSvg = styled.img`
+  min-width: 2000px;
+  z-index: -1;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0;
 `;
 
 export const Footer = () => (
@@ -104,11 +120,11 @@ export const Footer = () => (
         </p>
       </small>
       <small>
-        © {new Date().getFullYear()}, Built with
-        {' '}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
       </small>
     </FooterContainer>
-    <RightVoid />
+    <RightVoid>
+      <StyledSvg src={svg} />
+    </RightVoid>
   </>
 );
