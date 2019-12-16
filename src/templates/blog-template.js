@@ -1,11 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { css } from '@emotion/core';
+import { MDXProvider } from '@mdx-js/react';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
-import { css } from '@emotion/core';
+import { CodeBlock } from '../components/code-block';
 
 export default function PageTemplate({ data: { mdx } }) {
+  const components = {
+    /* eslint-disable jsx-a11y/heading-has-content */
+    h1: props => <h1 style={{ color: 'tomato' }} {...props} />,
+    code: CodeBlock,
+  };
+
   return (
     <Layout>
       <SEO title={mdx.frontmatter.title} />
@@ -24,7 +32,9 @@ export default function PageTemplate({ data: { mdx } }) {
       >
         {mdx.frontmatter.date}
       </small>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <MDXProvider components={components}>
+        <MDXRenderer>{mdx.body}</MDXRenderer>
+      </MDXProvider>
     </Layout>
   );
 }

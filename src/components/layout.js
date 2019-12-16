@@ -14,7 +14,7 @@ import './layout.css'
 import { ThemeProvider } from 'emotion-theming'
 import { theme } from '../utils/theme'
 import styled from '@emotion/styled'
-import { Footer, FooterContainer } from "./footer"
+import { Footer } from "./footer"
 
 const Main = styled.main``
 
