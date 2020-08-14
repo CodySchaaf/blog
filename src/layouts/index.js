@@ -5,39 +5,35 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql, useStaticQuery } from 'gatsby';
+import { ThemeProvider } from 'emotion-theming';
+import styled from '@emotion/styled';
 
-import Header from './header'
-import './layout.css'
-import { ThemeProvider } from 'emotion-theming'
-import { theme } from '../utils/theme'
-import styled from '@emotion/styled'
-import { Footer } from "./footer"
+import './layout.css';
 
-const Main = styled.main``
+import { theme } from '../utils/theme';
+import Header from '../components/header';
+import { Footer } from '../components/footer';
+
+const Main = styled.main``;
 
 const StyledPage = styled.div`
   display: grid;
   grid:
-    [header] 60px [main-content] 1fr [footer] / [left-gutter] 15px [content] minmax(
-      0,
-      1fr
-    )
+    [header] 60px [main-content] 1fr [footer] / [left-gutter] 15px [content] minmax(0, 1fr)
     [right-gutter] 15px [end];
 
   @media (min-width: 576px) {
-    grid: [header] 60px [main-content] 1fr [footer] / [left-gutter] minmax(
-        0,
-        1fr
-      ) [content] minmax(0, 8fr) [right-gutter] minmax(0, 1fr) [end];
+    grid:
+      [header] 60px [main-content] 1fr [footer] / [left-gutter] minmax(0, 1fr)
+      [content] minmax(0, 8fr) [right-gutter] minmax(0, 1fr) [end];
   }
   @media (min-width: 992px) {
-    grid: [header] 60px [main-content] 1fr [footer] / [left-gutter] minmax(
-        100px,
-        2fr
-      ) [content] minmax(auto, 970px) [right-gutter] minmax(100px, 2fr) [end];
+    grid:
+      [header] 60px [main-content] 1fr [footer] / [left-gutter] minmax(100px, 2fr)
+      [content] minmax(auto, 970px) [right-gutter] minmax(100px, 2fr) [end];
   }
   min-height: 100vh;
   position: relative;
@@ -46,7 +42,7 @@ const StyledPage = styled.div`
     grid-row: main-content;
     margin-top: 50px;
   }
-`
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -57,21 +53,21 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <ThemeProvider theme={theme}>
       <StyledPage>
         <Header siteTitle={data.site.siteMetadata.title} />
         <Main>{children}</Main>
-        <Footer/>
+        <Footer />
       </StyledPage>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

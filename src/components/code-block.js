@@ -1,5 +1,6 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
+import oceanicNext from 'prism-react-renderer/themes/duotoneLight'
 import styled from '@emotion/styled';
 /* eslint-disable no-unused-vars */
 import { mdx } from '@mdx-js/react';
@@ -32,7 +33,7 @@ export const CodeBlock = ({
   //         <LiveEditor />
   //         <LiveError />
   //       </LiveProvider>
-  //     </div>
+  //
   //   )
   // }
 
@@ -42,14 +43,14 @@ export const CodeBlock = ({
   //       <LiveProvider code={children}>
   //         <LivePreview />
   //       </LiveProvider>
-  //     </div>
+  //
   //   )
   // }
 
   return (
     <>
       {title ? <Title>{title.replace(/\\/g, ' ')}</Title> : null}
-      <Highlight {...defaultProps} code={children.trim()} language={language}>
+      <Highlight {...defaultProps} code={children.trim()} language={language} theme={oceanicNext}>
         {({
           className, style, tokens, getLineProps, getTokenProps,
         }) => (

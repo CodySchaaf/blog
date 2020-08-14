@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { mq } from '../utils/theme';
 import svg from '../images/blob-shape.svg';
+import { Blob } from '../components/blob';
 
 const box = css`
   border-top: 1px solid #e8e8e8;
@@ -51,14 +52,14 @@ const StyledUl = styled.ul`
   }
 `;
 
-const StyledSvg = styled.img`
-  min-width: 2000px;
+const StyledSvg = styled(Blob)`
+  min-width: 1000px;
   z-index: -1;
   height: auto;
   position: absolute;
   bottom: 0;
   right: 0;
-  margin-bottom: 0;
+  margin-bottom: -2px;
 `;
 
 export const Footer = () => (
@@ -124,7 +125,7 @@ export const Footer = () => (
       </small>
     </FooterContainer>
     <RightVoid>
-      <StyledSvg src={svg} />
+      <StyledSvg />
     </RightVoid>
   </>
 );

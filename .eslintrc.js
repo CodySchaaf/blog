@@ -13,5 +13,7 @@ module.exports = {
     'react/jsx-props-no-spreading': ['off'],
     'react/jsx-one-expression-per-line': ['off'],
     'semi': ['off'],
+    'import/prefer-default-export': ['off'],
+    'import/order': ["error", {"newlines-between": "always"}],
   },
 };

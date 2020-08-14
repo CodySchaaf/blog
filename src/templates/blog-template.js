@@ -3,9 +3,11 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { css } from '@emotion/core';
 import { MDXProvider } from '@mdx-js/react';
+
 import SEO from '../components/seo';
-import Layout from '../components/layout';
 import { CodeBlock } from '../components/code-block';
+
+import BlogPost from './add-codepenscript-to-react-gatsby';
 
 export default function PageTemplate({ data: { mdx } }) {
   const components = {
@@ -15,7 +17,7 @@ export default function PageTemplate({ data: { mdx } }) {
   };
 
   return (
-    <Layout>
+    <>
       <SEO title={mdx.frontmatter.title} />
       <h1
         css={css`
@@ -35,7 +37,8 @@ export default function PageTemplate({ data: { mdx } }) {
       <MDXProvider components={components}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
-    </Layout>
+      <BlogPost />
+    </>
   );
 }
 

@@ -1,20 +1,58 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-
-import Layout from '../components/layout';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/core';
+
 import SEO from '../components/seo';
+
+const shiftIn = keyframes`
+  from {
+    transform: translate3d(-50px,0px,0);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+`;
 
 const StyledList = styled.ul`
   list-style: none;
   margin-left: 0;
+
+  li {
+    animation: ${shiftIn} 400ms ease-in;
+  }
 `;
 
-const BlogIndex = ({ data }) => {
-  const { edges: posts } = data.allMdx;
+const BlogIndex = () => {
+  const {
+    allMdx: { edges: posts },
+  } = useStaticQuery(
+    graphql`
+      query blogIndex {
+        allMdx (sort: { fields: [frontmatter___date], order: DESC }) {
+          edges {
+            node {
+              id
+              excerpt
+              frontmatter {
+                title
+                date(formatString: "MMMM Do, YYYY")
+              }
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
 
   return (
-    <Layout>
+    <>
       <SEO title="Home" />
       <h1>Posts</h1>
       <StyledList>
@@ -28,28 +66,8 @@ const BlogIndex = ({ data }) => {
           </li>
         ))}
       </StyledList>
-    </Layout>
+    </>
   );
 };
-
-export const pageQuery = graphql`
-  query blogIndex {
-    allMdx {
-      edges {
-        node {
-          id
-          excerpt
-          frontmatter {
-            title
-            date(formatString: "MMMM Do, YYYY")
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default BlogIndex;

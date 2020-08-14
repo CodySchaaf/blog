@@ -5,6 +5,7 @@ module.exports = {
     author: `Cody Schaaf`,
   },
   plugins: [
+    `gatsby-plugin-layout`,
     `gatsby-plugin-emotion`,
     `gatsby-plugin-mdx`,
     `gatsby-plugin-react-helmet`,
@@ -46,4 +47,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
