@@ -7,12 +7,10 @@ import { MDXProvider } from '@mdx-js/react';
 import SEO from '../components/seo';
 import { CodeBlock } from '../components/code-block';
 
-import BlogPost from './add-codepenscript-to-react-gatsby';
-
 export default function PageTemplate({ data: { mdx } }) {
   const components = {
     /* eslint-disable jsx-a11y/heading-has-content */
-    h1: props => <h1 style={{ color: 'tomato' }} {...props} />,
+    h1: (props) => <h1 style={{ color: 'tomato' }} {...props} />,
     code: CodeBlock,
   };
 
@@ -37,7 +35,6 @@ export default function PageTemplate({ data: { mdx } }) {
       <MDXProvider components={components}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
-      <BlogPost />
     </>
   );
 }

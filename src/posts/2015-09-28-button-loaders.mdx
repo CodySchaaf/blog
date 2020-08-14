@@ -8,8 +8,20 @@ categories: angular
 
 This post will detail how to build a simple button loader using AngularJs.
 
-<p data-height="203" data-theme-id="19100" data-slug-hash="pjNLEQ" data-default-tab="result" data-user="codyschaaf" class='codepen'>See the Pen <a href='http://codepen.io/codyschaaf/pen/pjNLEQ/'>Button Loader</a> by Cody Schaaf (<a href='http://codepen.io/codyschaaf'>@codyschaaf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<iframe
+  height="265"
+  style="width: 100%;"
+  scrolling="no"
+  title="Angular Button Loader"
+  src="https://codepen.io/codyschaaf/embed/pjNLEQ?height=265&theme-id=light&default-tab=css,result"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen={true}
+>
+  See the Pen <a href="https://codepen.io/codyschaaf/pen/pjNLEQ">Angular Button Loader</a> by Cody Schaaf (
+  <a href="https://codepen.io/codyschaaf">@codyschaaf</a>) on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 This directive allows for a busy state to quickly and simply be applied to a form button in an Angular app. To use this directive
 define a button as you normally would, and then apply the `btn-busy` directive with the scope variable that controls the
@@ -65,38 +77,33 @@ and will be placed on top of the content. When the directive switches to its bus
 take up space. This will prevent the button from collapsing, but will force us to absolutely position the busy animation on top
 of the content.
 
-
 ```html btnBusy template
-
 <div>
-    <div ng-transclude ng-hide="busy" class="btn-busy-text"></div>
-    <div class="busy-container">
-        <div class="busy" ng-show="busy"></div>
-    </div>
+  <div ng-transclude ng-hide="busy" class="btn-busy-text"></div>
+  <div class="busy-container">
+    <div class="busy" ng-show="busy"></div>
+  </div>
 </div>
-
 ```
-
 
 All together we have:
 
 ```ts btnBusy directive definition
-myApp.directive("btnBusy", () => {
-    return {
-        template: `<div>
+myApp.directive('btnBusy', () => {
+  return {
+    template: `<div>
                       <div ng-transclude ng-hide="busy" class="btn-busy-text"></div>
                       <div class="busy-container">
                           <div class="busy" ng-show="busy"></div>
                       </div>
                   </div>`,
-        transclude: true,
-        scope: {
-            busy: "=btnBusy"
-        },
-        restrict: "A",
-    };
+    transclude: true,
+    scope: {
+      busy: '=btnBusy',
+    },
+    restrict: 'A',
+  };
 });
-
 ```
 
 For the css, we need to define a processing animation. I have chosen a spinner because it fits nicely, but you can substitute
@@ -132,70 +139,81 @@ a full width so it appears centered.
 I have also added a default height and width, as well as a larger version, these will be specific to your site's button dimensions.
 
 ```scss btnBusy scss
-
 @keyframes rotate-360 {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 [btn-busy] {
-    > div {
-        position: relative;
+  > div {
+    position: relative;
+  }
+  .busy {
+    animation: rotate-360 0.8s infinite linear;
+    border: 1px solid slategray;
+    border-radius: 50%;
+    border-right-color: midnightblue;
+    border-top-color: midnightblue;
+    display: inline-block;
+    &.ng-hide-add {
+      animation: none 0s; //allow for quick removal (ignore .8 second animation from rotate-360)
     }
-    .busy {
-        animation: rotate-360 0.8s infinite linear;
-        border: 1px solid slategray;
-        border-radius: 50%;
-        border-right-color: midnightblue;
-        border-top-color: midnightblue;
-        display: inline-block;
-        &.ng-hide-add {
-            animation: none 0s; //allow for quick removal (ignore .8 second animation from rotate-360)
-        }
+  }
+  .btn-busy-text {
+    &.ng-hide {
+      display: block !important; //override angular's default
+      opacity: 0;
     }
-    .btn-busy-text {
-        &.ng-hide {
-            display: block !important; //override angular's default
-            opacity: 0;
-        }
-    }
-    .busy-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-    }
-    .busy {
-        height: 20px;
-        width: 20px;
-    }
+  }
+  .busy-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+  }
+  .busy {
+    height: 20px;
+    width: 20px;
+  }
 
-    &.btn-busy-large .busy {
-        height: 32px;
-        width: 32px;
-    }
-
+  &.btn-busy-large .busy {
+    height: 32px;
+    width: 32px;
+  }
 }
-
 ```
 
 Finally to see it in action we can make a form and apply the directive to our submit button.
 
-
 ```html btnBusy in action
-
 <div ng-app="myApp">
   <div ng-controller="Main as MainCtrl" class="container">
     <form name="timeForm" class="form-inline" novalidate>
       <h5>How long should we wait (ms)?</h5>
       <div class="form-group">
-        <input type="text" class="input-s form-control" name="time" ng-model="MainCtrl.waitTime" placeholder="time" ng-required="true" />
+        <input
+          type="text"
+          class="input-s form-control"
+          name="time"
+          ng-model="MainCtrl.waitTime"
+          placeholder="time"
+          ng-required="true"
+        />
       </div>
 
-      <button class="btn btn-primary" ng-click="MainCtrl.wait()" btn-busy="MainCtrl.waiting" ng-disabled="MainCtrl.waiting">Let's Wait!</button>
+      <button
+        class="btn btn-primary"
+        ng-click="MainCtrl.wait()"
+        btn-busy="MainCtrl.waiting"
+        ng-disabled="MainCtrl.waiting"
+      >
+        Let's Wait!
+      </button>
     </form>
-
   </div>
 </div>
-
 ```
