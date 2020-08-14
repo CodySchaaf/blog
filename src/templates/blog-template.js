@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { css } from '@emotion/core';
 import { MDXProvider } from '@mdx-js/react';
+import { DiscussionEmbed } from 'disqus-react';
 
 import SEO from '../components/seo';
 import { CodeBlock } from '../components/code-block';
@@ -12,6 +13,11 @@ export default function PageTemplate({ data: { mdx } }) {
     /* eslint-disable jsx-a11y/heading-has-content */
     h1: (props) => <h1 style={{ color: 'tomato' }} {...props} />,
     code: CodeBlock,
+  };
+
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: mdx.slug, title: mdx.frontmatter.title },
   };
 
   return (
@@ -35,6 +41,7 @@ export default function PageTemplate({ data: { mdx } }) {
       <MDXProvider components={components}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
+      <DiscussionEmbed {...disqusConfig} />
     </>
   );
 }
