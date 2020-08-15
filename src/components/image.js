@@ -26,8 +26,6 @@ const Image = ({ className }) => {
     }
   `);
 
-  console.log(data.file.childImageSharp.fluid);
-
   return <Img className={className} fluid={data.file.childImageSharp.fluid} alt="" />;
 };
 

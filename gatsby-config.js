@@ -3,12 +3,13 @@ module.exports = {
     title: `Coding With Cody`,
     titleTemplate: '%s · With Cody',
     description: `Hi my name is Cody Schaaf, here is my blog.`,
-    url: 'https://blog.codyschaaf.com',
+    siteUrl: 'https://blog.codyschaaf.com',
     image: '/me.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@TheCodingCody',
     author: `Cody Schaaf`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

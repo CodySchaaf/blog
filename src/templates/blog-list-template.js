@@ -80,7 +80,7 @@ const BlogIndex = ({
           <span css={{ color: theme.palette.text.secondary }}>← Previous</span>
         )}
         {Array.from({ length: numPages }, (_, i) => (currentPage === i + 1 ? (
-          <span css={{ color: theme.palette.text.secondary }}>{i + 1}</span>
+          <span key={`pagination-number${i + 1}`} css={{ color: theme.palette.text.secondary }}>{i + 1}</span>
         ) : (
           <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? '' : i + 1}`}>
             {i + 1}
