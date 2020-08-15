@@ -12,10 +12,13 @@ import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 
 import './layout.css';
+import 'typeface-work-sans';
+import 'typeface-quattrocento-sans';
 
 import { theme } from '../utils/theme';
 import Header from '../components/header';
 import { Footer } from '../components/footer';
+import SEO from "../components/seo"
 
 const Main = styled.main``;
 
@@ -57,6 +60,9 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <SEO>
+        <html lang="en" />
+      </SEO>
       <StyledPage>
         <Header siteTitle={data.site.siteMetadata.title} />
         <Main>{children}</Main>

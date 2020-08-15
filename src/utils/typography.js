@@ -1,5 +1,10 @@
-import Typography from "typography"
-import fairyGatesTheme from "typography-theme-fairy-gates"
-const typography = new Typography(fairyGatesTheme)
+import Typography from 'typography';
+import fairyGatesTheme from 'typography-theme-fairy-gates';
 
-export default typography
+const { googleFonts, ...rest } = fairyGatesTheme;
+
+console.log(googleFonts);
+
+const typography = new Typography(rest);
+
+export default typography;

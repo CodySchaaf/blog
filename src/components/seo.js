@@ -19,7 +19,7 @@ const query = graphql`
   }
 `;
 
-const SEO = ({ title, description, image, article, tags }) => {
+const SEO = ({ title, description, image, article, tags, children }) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(query);
 
@@ -58,6 +58,7 @@ const SEO = ({ title, description, image, article, tags }) => {
       {seo.description && <meta name="twitter:description" content={seo.description} />}
 
       {seo.image && <meta name="twitter:image" content={seo.image} />}
+      {children}
     </Helmet>
   );
 };

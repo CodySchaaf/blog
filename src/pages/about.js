@@ -1,6 +1,7 @@
 import React from 'react';
-import SEO from '../components/seo';
 import styled from '@emotion/styled';
+
+import SEO from '../components/seo';
 import Image from '../components/image';
 import { mq } from '../utils/theme';
 
