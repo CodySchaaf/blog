@@ -22,7 +22,7 @@ export default function PageTemplate({ data: { mdx } }) {
 
   return (
     <>
-      <SEO title={mdx.frontmatter.title} />
+      <SEO title={mdx.frontmatter.title} article tags={mdx.frontmatter.tags} />
       <h1
         css={css`
           margin-bottom: 0;
@@ -54,6 +54,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM Do, YYYY")
+        tags
       }
     }
   }

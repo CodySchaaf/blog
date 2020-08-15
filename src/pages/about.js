@@ -10,6 +10,9 @@ const StyledContainer = styled.div`
 `;
 
 const StyledImage = styled(Image)`
+  min-width: 200px;
+  ${mq({ marginLeft: ['0px', '10px'] })}
+  ${mq({ marginBottom: ['10px', '0px'] })}
 `;
 
 const About = () => (
@@ -23,8 +26,8 @@ const About = () => (
         the moment are React and Redux, with a side of Angular when the project suits it. I enjoy nothing more than
         learning new languages and frameworks. Feel free to contact me with questions/comments/anything.
       </p>
-    </StyledContainer>
       <StyledImage />
+    </StyledContainer>
     <a href="http://www.codyschaaf.com">Check out my site.</a>
   </>
 );
