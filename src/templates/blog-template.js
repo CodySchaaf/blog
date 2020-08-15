@@ -4,6 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { css } from '@emotion/core';
 import { MDXProvider } from '@mdx-js/react';
 import { DiscussionEmbed } from 'disqus-react';
+import LazyLoad from 'react-lazyload';
 
 import SEO from '../components/seo';
 import { CodeBlock } from '../components/code-block';
@@ -41,7 +42,9 @@ export default function PageTemplate({ data: { mdx } }) {
       <MDXProvider components={components}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
-      <DiscussionEmbed {...disqusConfig} />
+      <LazyLoad height={672} offset={150}>
+        <DiscussionEmbed {...disqusConfig} />
+      </LazyLoad>
     </>
   );
 }
