@@ -3,7 +3,7 @@
   "private": true,
   "description": "My Blog - Built with Gatsby",
   "version": "0.1.0",
-  "author": "Cody Schaaf <codyjschaaf@gmail.com>",
+  "author": "Cody Schaaf <inquiries@codyschaaf.com>",
   "dependencies": {
     "@emotion/core": "^10.0.34",
     "@emotion/styled": "^10.0.27",

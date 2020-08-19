@@ -86,7 +86,7 @@ export const Footer = () => (
           <StyledUl>
             <li>Coding With Cody</li>
             <li>
-              <a href="mailto:codyjschaaf@gmail.com">codyjschaaf@gmail.com</a>
+              <a href="mailto:inquiries@codyschaaf.com">inquiries@codyschaaf.com</a>
             </li>
           </StyledUl>
           <StyledUl>
